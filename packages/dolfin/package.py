@@ -42,7 +42,7 @@ class Dolfin(AutotoolsPackage):
         if '+parmetis' in self.spec:
             args.append('--with-parmetis')
         if '+petsc' in self.spec:
-            args.append('--with-petsc')
+            args.append('--with-petsc={0}'.format(self.spec['petsc'].prefix))
         if '+gts' in self.spec:
             args.append('--with-gts')
         if '~xml' in self.spec:
