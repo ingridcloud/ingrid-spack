@@ -24,8 +24,8 @@ class Dolfin(AutotoolsPackage):
     variant('xml', default=True)
 
     # FIXME: Add dependencies if required.
-    depends_on('ufc2-hpc@2.1.4', when='@0.9.0p1-hpc:')
-    #depends_on('ufc2-hpc@2.2.0', when='@0.9.1-hpc:')
+    depends_on('ufc@2.1.4', when='@0.9.0p1-hpc:')
+    #depends_on('ufc@2.2.0', when='@0.9.1-hpc:')
     depends_on('libxml2', when='@0.9.0p1-hpc+xml')
     depends_on('mpi', when='+mpi')
     depends_on('petsc', when='+petsc')
