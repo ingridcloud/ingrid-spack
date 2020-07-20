@@ -17,11 +17,13 @@ class Ffc(PythonPackage):
     homepage = "https://bitbucket.org/adaptivesimulations/ffc-hpc"
     git      = "https://bitbucket.org/adaptivesimulations/ffc-hpc.git"
 
-#    version('1.1.0-hpc', tag='1.1.0-hpc')
+    version('1.1.0-hpc', tag='1.1.0-hpc')
     version('1.0.2-hpc', tag='1.0.2-hpc')
     
-    depends_on('python@:2', type=('build', 'run'), when='@1.0.2-hpc')
-    depends_on('ufl@1.0.1', type=('build', 'run'), when='@1.0.2-hpc')
+    depends_on('python@:2',  type=('build', 'run'), when='@1.0.2-hpc')
+    depends_on('ufl@1.0.1',  type=('build', 'run'), when='@1.0.2-hpc')
     depends_on('fiat@1.4.0', type=('build', 'run'), when='@1.0.2-hpc')
-    #   depends_on('python@:3', type=('build', 'run'), when='@1.1.0-hpc:')
-    #    depends_on('ufl@1.1.0', type=('build', 'run'), when='@1.1.0-hpc')
+    depends_on('fiat@1.5.0', type=('build', 'run'), when='@1.1.0-hpc')
+    depends_on('python@3:',  type=('build', 'run'), when='@1.1.0-hpc')
+    depends_on('py-sympy',   type=('build', 'run'), when='@1.1.0-hpc')
+    depends_on('ufl@1.1.0',  type=('build', 'run'), when='@1.1.0-hpc')

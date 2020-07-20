@@ -14,9 +14,9 @@ class Ufl(PythonPackage):
     homepage = "https://bitbucket.org/adaptivesimulations/ufl-hpc"
     git      = "https://bitbucket.org/adaptivesimulations/ufl-hpc.git"
 
-#    version('1.1.0', tag='1.1.0')
+    version('1.1.0', tag='1.1.0')
     version('1.0.1', tag='1.0.1')
     
-    depends_on('python@:2', type=('build', 'run'), when='@1.0.1:')
- #   depends_on('python@:3', type=('build', 'run'), when='@1.1.0:')
+    depends_on('python@:2', type=('build', 'run'), when='@1.0.1')
+    depends_on('python@3:', type=('build', 'run'), when='@1.1.0')
 
