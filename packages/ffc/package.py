@@ -13,7 +13,6 @@ class Ffc(PythonPackage):
        operator (tensor). In particular, a bilinear form may be assembled
        into a matrix and a linear form may be assembled into a vector."""
 
-    # FIXME: Add a proper url for your package's homepage here.
     homepage = "https://bitbucket.org/adaptivesimulations/ffc-hpc"
     git      = "https://bitbucket.org/adaptivesimulations/ffc-hpc.git"
 
@@ -22,8 +21,11 @@ class Ffc(PythonPackage):
     
     depends_on('python@:2',  type=('build', 'run'), when='@1.0.2-hpc')
     depends_on('ufl@1.0.1',  type=('build', 'run'), when='@1.0.2-hpc')
+    depends_on('ufc@2.1.4',  type=('build', 'run'), when='@1.0.2-hpc')
     depends_on('fiat@1.4.0', type=('build', 'run'), when='@1.0.2-hpc')
     depends_on('fiat@1.5.0', type=('build', 'run'), when='@1.1.0-hpc')
     depends_on('python@3:',  type=('build', 'run'), when='@1.1.0-hpc')
     depends_on('py-sympy',   type=('build', 'run'), when='@1.1.0-hpc')
+    depends_on('py-numpy',   type=('build', 'run'), when='@1.1.0-hpc')
     depends_on('ufl@1.1.0',  type=('build', 'run'), when='@1.1.0-hpc')
+    depends_on('ufc@2.2.0',  type=('build', 'run'), when='@1.1.0-hpc')
