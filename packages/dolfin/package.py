@@ -13,19 +13,19 @@ class Dolfin(AutotoolsPackage):
 
     # FIXME: Add a proper url for your package's homepage here.
     homepage = "https://bitbucket.org/adaptivesimulations/dolfin-hpc"
-    url      = "https://bitbucket.org/adaptivesimulations/dolfin-hpc/downloads/dolfin-0.9.0p1-hpc.tar.gz"
 
-    version('0.9.0p1-hpc', sha256='9d1aaff6dafc3a408677ec00016bac7a480518f29f520cd0995def1776df1d76')
+    version('0.9.0p1-hpc', url='https://bitbucket.org/adaptivesimulations/dolfin-hpc/downloads/dolfin-0.9.0p1-hpc.tar.gz', sha256='9d1aaff6dafc3a408677ec00016bac7a480518f29f520cd0995def1776df1d76')
+    version('0.9.1-hpc', url='https://bitbucket.org/adaptivesimulations/dolfin-hpc/downloads/dolfin-0.9.1-hpc.tar.gz', sha256='a34a7a2565ec435331cb867b307205d56ddfe7c07a3332d4713d356b25dc8e44')
 
     variant('gts', default=False)
     variant('petsc', default=True)
     variant('parmetis', default=True)
     variant('mpi', default=True)
-    variant('xml', default=True)
+    variant('xml', default=False)
 
     # FIXME: Add dependencies if required.
-    depends_on('ufc@2.1.4', when='@0.9.0p1-hpc:')
-    #depends_on('ufc@2.2.0', when='@0.9.1-hpc:')
+    depends_on('ufc@2.1.4', when='@0.9.0p1-hpc')
+    depends_on('ufc@2.2.0', when='@0.9.1-hpc')
     depends_on('libxml2', when='@0.9.0p1-hpc+xml')
     depends_on('mpi', when='+mpi')
     depends_on('petsc', when='+petsc')
