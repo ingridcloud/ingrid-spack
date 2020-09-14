@@ -11,22 +11,24 @@ class Dolfin(AutotoolsPackage):
     """DOLFIN HPC is a special branch of DOLFIN optimized for
        distributed memory architectures. """
 
-    # FIXME: Add a proper url for your package's homepage here.
     homepage = "https://bitbucket.org/adaptivesimulations/dolfin-hpc"
 
     version('0.9.0p1-hpc', url='https://bitbucket.org/adaptivesimulations/dolfin-hpc/downloads/dolfin-0.9.0p1-hpc.tar.gz', sha256='9d1aaff6dafc3a408677ec00016bac7a480518f29f520cd0995def1776df1d76')
     version('0.9.1-hpc', url='https://bitbucket.org/adaptivesimulations/dolfin-hpc/downloads/dolfin-0.9.1-hpc.tar.gz', sha256='a34a7a2565ec435331cb867b307205d56ddfe7c07a3332d4713d356b25dc8e44')
+    version('0.9.2-hpc', url='https://bitbucket.org/adaptivesimulations/dolfin-hpc/downloads/dolfin-0.9.2-hpc.tar.gz', sha256='c3b7f7c9c552f216b3376fda925129f2918d5eff938edfb6ebc0810558df4f62')
 
     variant('gts', default=False)
     variant('petsc', default=True)
     variant('parmetis', default=True)
     variant('mpi', default=True)
     variant('xml', default=False)
+    variant('convert', default=False, description='Build external mesh converter tool')
 
     # FIXME: Add dependencies if required.
     depends_on('ufc@2.1.4', when='@0.9.0p1-hpc')
-    depends_on('ufc@2.2.0', when='@0.9.1-hpc')
+    depends_on('ufc@2.2.0', when='@0.9.1-hpc:')
     depends_on('libxml2', when='@0.9.0p1-hpc+xml')
+    depends_on('libxml2', when='+convert')
     depends_on('mpi', when='+mpi')
     depends_on('petsc', when='+petsc')
     depends_on('parmetis', when='+parmetis')
@@ -45,6 +47,15 @@ class Dolfin(AutotoolsPackage):
             args.append('--with-petsc={0}'.format(self.spec['petsc'].prefix))
         if '+gts' in self.spec:
             args.append('--with-gts')
-        if '~xml' in self.spec:
-            args.append('--without-xml')
+        if self.spec.satisfies('@0.9.1-hpc:'):
+            if '+convert' in self.spec:
+                args.append('--with-convert')
+        if self.spec.satisfies('@0.9.0p1-hpc'):
+            if '~xml' in self.spec:
+                args.append('--without-xml')
+
+
         return args
+
+    
+
