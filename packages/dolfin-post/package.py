@@ -10,7 +10,6 @@ from spack import *
 class DolfinPost(AutotoolsPackage):
     """DOLFINPost is a tool for converting DOLFIN binary into various formats."""
 
-    # FIXME: Add a proper url for your package's homepage here.
     homepage = "https://bitbucket.org/fenics-hpc/dolfin-post"    
     url      = "https://bitbucket.org/fenics-hpc/dolfin-post/downloads/dolfinpost-0.0.3.tar.gz"
 
