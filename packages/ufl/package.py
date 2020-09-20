@@ -9,8 +9,6 @@ from spack import *
 class Ufl(PythonPackage):
     """UFL - Unified Form Language"""
 
-
-    # FIXME: Add a proper url for your package's homepage here.
     homepage = "https://bitbucket.org/adaptivesimulations/ufl-hpc"
     git      = "https://bitbucket.org/adaptivesimulations/ufl-hpc.git"
 
