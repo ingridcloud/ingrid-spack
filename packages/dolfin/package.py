@@ -27,6 +27,7 @@ class Dolfin(AutotoolsPackage,PythonPackage):
     variant('fcache', default=False, description='Local data cache in functions')
     variant('p1opt', default=False, description='Optimization for P1 elements')
     variant('optb', default=False, description='Basis function optimization')
+    variant('quad', default=False, description='Enable various quadrature rules')
 
     depends_on('python@:2', type=('build','run'), when=('@0.9.0p1-hpc+python'))
     depends_on('ffc@1.0.2-hpc', type=('build','run'), when=('@0.9.0p1-hpc+python'))
@@ -40,6 +41,8 @@ class Dolfin(AutotoolsPackage,PythonPackage):
     depends_on('petsc', when='+petsc')
     depends_on('parmetis', when='+mpi')
     depends_on('gts', when='+gts')
+    depends_on('blas', when='+quad')
+    depends_on('lapack', when='+quad')
 
 
     def configure_args(self):
@@ -56,6 +59,8 @@ class Dolfin(AutotoolsPackage,PythonPackage):
             args.append('--enable-python')
         if '+gts' in self.spec:
             args.append('--with-gts')
+        if '+quad' in self.spec:
+            args.append('--enable-quadrature')
         if self.spec.satisfies('@0.9.1-hpc:'):
             if '+convert' in self.spec:
                 args.append('--with-convert')
