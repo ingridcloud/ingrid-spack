@@ -29,6 +29,7 @@ class Dolfin(AutotoolsPackage,PythonPackage):
     variant('optb', default=False, description='Basis function optimization')
     variant('quad', default=False, description='Enable various quadrature rules')
 
+    depends_on('pkgconf', type=('build','run'))
     depends_on('python@:2', type=('build','run'), when=('@0.9.0p1-hpc+python'))
     depends_on('ffc@1.0.2-hpc', type=('build','run'), when=('@0.9.0p1-hpc+python'))
     depends_on('ffc@1.1.0-hpc', type=('build','run'), when=('@0.9.1-hpc:+python'))
