@@ -16,6 +16,7 @@ class Ffc(PythonPackage):
     homepage = "https://bitbucket.org/adaptivesimulations/ffc-hpc"
     git      = "https://bitbucket.org/adaptivesimulations/ffc-hpc.git"
 
+    version('1.2.0-hpc', tag='1.2.0-hpc')
     version('1.1.0-hpc', tag='1.1.0-hpc')
     version('1.0.2-hpc', tag='1.0.2-hpc')
     
@@ -25,7 +26,10 @@ class Ffc(PythonPackage):
     depends_on('fiat@1.4.0', type=('build', 'run'), when='@1.0.2-hpc')
     depends_on('fiat@1.5.0', type=('build', 'run'), when='@1.1.0-hpc')
     depends_on('python@3:',  type=('build', 'run'), when='@1.1.0-hpc')
-    depends_on('py-sympy',   type=('build', 'run'), when='@1.1.0-hpc')
-    depends_on('py-numpy',   type=('build', 'run'), when='@1.1.0-hpc')
-    depends_on('ufl@1.1.0',  type=('build', 'run'), when='@1.1.0-hpc')
-    depends_on('ufc@2.2.0',  type=('build', 'run'), when='@1.1.0-hpc')
+    depends_on('py-sympy',   type=('run'), when='@1.1.0-hpc:')
+    depends_on('py-numpy',   type=('run'), when='@1.1.0-hpc:')
+    depends_on('ufl@1.1.0',  type=('run'), when='@1.1.0-hpc')
+    depends_on('ufc@2.2.0',  type=('run'), when='@1.1.0-hpc')
+    depends_on('ufl@1.2.0',  type=('run'), when='@1.2.0-hpc')
+    depends_on('fiat@1.6.0', type=('run'), when='@1.2.0-hpc')
+    depends_on('py-setuptools', type=('build'), when='@1.2.0-hpc')
