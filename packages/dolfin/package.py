@@ -16,6 +16,7 @@ class Dolfin(AutotoolsPackage,PythonPackage):
     version('0.9.0p1-hpc', url='https://bitbucket.org/adaptivesimulations/dolfin-hpc/downloads/dolfin-0.9.0p1-hpc.tar.gz', sha256='9d1aaff6dafc3a408677ec00016bac7a480518f29f520cd0995def1776df1d76')
     version('0.9.1-hpc', url='https://bitbucket.org/adaptivesimulations/dolfin-hpc/downloads/dolfin-0.9.1-hpc.tar.gz', sha256='a34a7a2565ec435331cb867b307205d56ddfe7c07a3332d4713d356b25dc8e44')
     version('0.9.2-hpc', url='https://bitbucket.org/adaptivesimulations/dolfin-hpc/downloads/dolfin-0.9.2-hpc.tar.gz', sha256='c3b7f7c9c552f216b3376fda925129f2918d5eff938edfb6ebc0810558df4f62')
+    version('0.9.3-hpc', url='https://bitbucket.org/adaptivesimulations/dolfin-hpc/downloads/dolfin-0.9.3-hpc.tar.gz', sha256='b826bbd7b36199ca234958f5c6661457adb625d86289c7711c4de00835c68a11')
 
     variant('debug', default=False, description='Debug symbols and asserts')
     variant('gts', default=False, description='Compile with support for GTS')
