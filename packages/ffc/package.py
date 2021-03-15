@@ -33,3 +33,4 @@ class Ffc(PythonPackage):
     depends_on('ufl@1.2.0',  type=('run'), when='@1.2.0-hpc')
     depends_on('fiat@1.6.0', type=('run'), when='@1.2.0-hpc')
     depends_on('py-setuptools', type=('build'), when='@1.2.0-hpc')
+    depends_on('pkgconf', type=('run'), when='@1.2.0-hpc')
