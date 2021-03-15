@@ -12,11 +12,13 @@ class Dolfin(AutotoolsPackage,PythonPackage):
        distributed memory architectures. """
 
     homepage = "https://bitbucket.org/adaptivesimulations/dolfin-hpc"
+    maintainers = ['njansson']
 
     version('0.9.0p1-hpc', url='https://bitbucket.org/adaptivesimulations/dolfin-hpc/downloads/dolfin-0.9.0p1-hpc.tar.gz', sha256='9d1aaff6dafc3a408677ec00016bac7a480518f29f520cd0995def1776df1d76')
     version('0.9.1-hpc', url='https://bitbucket.org/adaptivesimulations/dolfin-hpc/downloads/dolfin-0.9.1-hpc.tar.gz', sha256='a34a7a2565ec435331cb867b307205d56ddfe7c07a3332d4713d356b25dc8e44')
     version('0.9.2-hpc', url='https://bitbucket.org/adaptivesimulations/dolfin-hpc/downloads/dolfin-0.9.2-hpc.tar.gz', sha256='c3b7f7c9c552f216b3376fda925129f2918d5eff938edfb6ebc0810558df4f62')
     version('0.9.3-hpc', url='https://bitbucket.org/adaptivesimulations/dolfin-hpc/downloads/dolfin-0.9.3-hpc.tar.gz', sha256='b826bbd7b36199ca234958f5c6661457adb625d86289c7711c4de00835c68a11')
+    version('0.9.4-hpc', url='https://bitbucket.org/adaptivesimulations/dolfin-hpc/downloads/dolfin-0.9.4-hpc.tar.gz', sha256='52657aeaee82954f82799769912d3fdb92941c88a6b8f2e147ee3d1c2b360e63')
 
     variant('debug', default=False, description='Debug symbols and asserts')
     variant('gts', default=False, description='Compile with support for GTS')
@@ -33,10 +35,12 @@ class Dolfin(AutotoolsPackage,PythonPackage):
     depends_on('pkgconf', type=('build','run'))
     depends_on('python@:2', type=('build','run'), when=('@0.9.0p1-hpc+python'))
     depends_on('ffc@1.0.2-hpc', type=('build','run'), when=('@0.9.0p1-hpc+python'))
-    depends_on('ffc@1.1.0-hpc', type=('build','run'), when=('@0.9.1-hpc:+python'))
-    depends_on('python@3:', type=('build','run'), when=('@0.9.1-hpc:+python'))
+    depends_on('ffc@1.1.0-hpc', type=('build','run'), when=('@0.9.1-hpc:0.9.3-hpc +python'))
+    depends_on('ffc@1.2.0-hpc', type=('build','run'), when=('@0.9.4-hpc'))
+    depends_on('python@3:', type=('build','run'), when=('@0.9.1-hpc:0.9.3-hpc +python'))
+    depends_on('python@3:', type=('build','run'), when=('@0.9.4-hpc:'))
     depends_on('ufc@2.1.4', when='@0.9.0p1-hpc')
-    depends_on('ufc@2.2.0', when='@0.9.1-hpc:')
+    depends_on('ufc@2.2.0', when='@0.9.1-hpc:0.9.3-hpc')
     depends_on('libxml2', when='@0.9.0p1-hpc+xml')
     depends_on('libxml2', when='@0.9.1-hpc:+convert')
     depends_on('mpi', when='+mpi')
