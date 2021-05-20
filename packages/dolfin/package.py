@@ -19,10 +19,12 @@ class Dolfin(AutotoolsPackage,PythonPackage):
     version('0.9.2-hpc', url='https://bitbucket.org/adaptivesimulations/dolfin-hpc/downloads/dolfin-0.9.2-hpc.tar.gz', sha256='c3b7f7c9c552f216b3376fda925129f2918d5eff938edfb6ebc0810558df4f62')
     version('0.9.3-hpc', url='https://bitbucket.org/adaptivesimulations/dolfin-hpc/downloads/dolfin-0.9.3-hpc.tar.gz', sha256='b826bbd7b36199ca234958f5c6661457adb625d86289c7711c4de00835c68a11')
     version('0.9.4-hpc', url='https://bitbucket.org/adaptivesimulations/dolfin-hpc/downloads/dolfin-0.9.4-hpc.tar.gz', sha256='52657aeaee82954f82799769912d3fdb92941c88a6b8f2e147ee3d1c2b360e63')
+    version('0.9.5-hpc', url='https://bitbucket.org/adaptivesimulations/dolfin-hpc/downloads/dolfin-0.9.5-hpc.tar.gz', sha256='40aedd53124ab6f8275513ed8546044c546d619168522714e89fd6006af0852c')
 
     variant('debug', default=False, description='Debug symbols and asserts')
     variant('gts', default=False, description='Compile with support for GTS')
     variant('petsc', default=True, description='Compile with support for PETSc')
+    variant('trilinos', default=False, description='Compile with support for Trilinos')
     variant('mpi', default=True, description='Compile with Support for MPI')
     variant('xml', default=False, description='Support for reading/writing XML data')
     variant('convert', default=False, description='Build external mesh converter tool')
@@ -36,7 +38,7 @@ class Dolfin(AutotoolsPackage,PythonPackage):
     depends_on('python@:2', type=('build','run'), when=('@0.9.0p1-hpc+python'))
     depends_on('ffc@1.0.2-hpc', type=('build','run'), when=('@0.9.0p1-hpc+python'))
     depends_on('ffc@1.1.0-hpc', type=('build','run'), when=('@0.9.1-hpc:0.9.3-hpc +python'))
-    depends_on('ffc@1.2.0-hpc', type=('build','run'), when=('@0.9.4-hpc'))
+    depends_on('ffc@1.2.0-hpc', type=('build','run'), when=('@0.9.4-hpc:'))
     depends_on('python@3:', type=('build','run'), when=('@0.9.1-hpc:0.9.3-hpc +python'))
     depends_on('python@3:', type=('build','run'), when=('@0.9.4-hpc:'))
     depends_on('ufc@2.1.4', when='@0.9.0p1-hpc')
@@ -45,6 +47,7 @@ class Dolfin(AutotoolsPackage,PythonPackage):
     depends_on('libxml2', when='@0.9.1-hpc:+convert')
     depends_on('mpi', when='+mpi')
     depends_on('petsc', when='+petsc')
+    depends_on('trilinos', when='@0.9.5-hpc:+trilinos')
     depends_on('parmetis', when='+mpi')
     depends_on('gts', when='+gts')
     depends_on('blas', when='+quad')
@@ -76,6 +79,9 @@ class Dolfin(AutotoolsPackage,PythonPackage):
                 args.append('--enable-function-cache')
             if '+optb' in self.spec:
                 args.append('--enable-opt-basis')
+        if self.spec.satisfies('@0.9.5-hpc:'):
+            if '+trilinos' in self.spec:
+                args.append('--with-trilinos={0}'.format(self.spec['trilinos'].prefix))
         if self.spec.satisfies('@0.9.0p1-hpc'):
             if '~xml' in self.spec:
                 args.append('--without-xml')
